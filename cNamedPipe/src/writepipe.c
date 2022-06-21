@@ -30,7 +30,7 @@ int main()
 	int fd;
 
 	// File name
-	char filename[] = "write.fifo";
+	char filename[] = "file";
 
 	// Buffer
 	char buffer[BUFFSIZE];
