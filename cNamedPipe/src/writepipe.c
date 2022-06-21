@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 	}
 
 	// Start opening
-	prinf("Opening file... >>> %s\n", filename); 
+	printf("Opening file... >>> %s\n", filename); 
 	fd = open(filename, O_WRONLY);
 	// Check for any errors in opening the  file
 	if (fd == -1) 

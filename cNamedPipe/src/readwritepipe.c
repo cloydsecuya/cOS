@@ -22,7 +22,27 @@
 
 
 // MAIN METHOD
-int main(nt argc, char* argv[])
+int main(int argc, char* argv[])
 {
+    // File Descriptor
+	int fd;
 
+	// Variable for reading-writing permissions 
+	int n; 
+
+    // Buffer 
+    char buffer[BUFFSIZE];
+
+    // Start opening the file with read-write permission
+    printf("Opening file... >>> file"); 
+    fd = open("file", O_RDWR);
+    if (fd == -1) 
+	{
+		printf("An error occurred an opening the file >> file");
+		return 2;
+	}
+
+    
+
+    return 0;
 }
