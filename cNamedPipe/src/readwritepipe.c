@@ -1,11 +1,10 @@
 /*
-	Document: writepipe.c
+	Document: readwritepipe.c
 	Created on: June 22, 2022
 	Author: Cloyd Van S. Secuya
 	Description:
-		Creating and using named pipes to communicate between processes. 
-		Moreover, we try to use this file as the write only file which 
-		should write onto a generated file by mknod()
+		The other end of the named pipe where we try to 
+        open the file with read and write permissions
 */
 
 
@@ -25,5 +24,5 @@
 // MAIN METHOD
 int main(nt argc, char* argv[])
 {
-    
+
 }
