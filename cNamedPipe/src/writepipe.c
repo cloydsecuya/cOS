@@ -52,7 +52,12 @@ int main(int argc, char* argv[])
 
 	// Try and write into the file while this program is running
 	while((n = read(STDIN_FILENO, buffer, BUFFSIZE)) > 0)
-	{	printf("\nPass message: ");
+	{	
+		// Try "in-between" reading fron the readpipe
+		(read(fd, buffer, sizeof(buffer)));
+		printf(read(fd, buffer, sizeof(buffer)));
+		
+		printf("\nPass message: ");
 		fgets(buffer, sizeof(buffer), stdin);
 		// Try and begin writing. Apply error handling and checking
 		if (write(fd, buffer, strlen(buffer)) == -1)
