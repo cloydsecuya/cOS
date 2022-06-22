@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 		}
 		//printf("Wrote >> %s ( %d ) bytes \n", buffer, strlen(buffer));
 		printf("Read success");
-        printf(buffer);
+        printf("%s\n",buffer);
 	}
     // Close the fd
     close(fd);
