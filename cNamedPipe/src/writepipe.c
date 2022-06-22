@@ -40,14 +40,6 @@ int main(int argc, char* argv[])
 	// Buffer
 	char buffer[BUFFSIZE];
 
-	// Start creating a named pipe and apply error checking
-	fd = mknod(filename, 0666, 0);
-	if (fd == -1)
-	{
-		printf("An error occurred at creating the file \n");
-		return 1;
-	}
-
 	// Start opening
 	printf("Opening file... >>> %s\n", filename); 
 	fd = open(filename, O_WRONLY);
@@ -60,7 +52,8 @@ int main(int argc, char* argv[])
 
 	// Try and write into the file while this program is running
 	while((n = read(STDIN_FILENO, buffer, BUFFSIZE)) > 0) 
-	{	fgets(buffer, sizeof(buffer), stdin);
+	{	printf("Pass message: "); 
+		fgets(buffer, sizeof(buffer), stdin);
 		// Try and begin writing. Apply error handling and checking
 		if (write(fd, buffer, strlen(buffer)) == -1) 
 		{
