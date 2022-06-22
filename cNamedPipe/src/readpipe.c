@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
 	// Try and read into the file while this program is running
 	while(1)
 	{
+		//printf("%s\n", buffer);
 		// Read the stdin in buffer
 		/**
 		 * @NOTE: REMEMBER THAT WE ARE USING CHAR ARRAYS AS THERE
