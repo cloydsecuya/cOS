@@ -14,9 +14,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
-// #include <sys/wait.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <string.h>
+
 
 // DEFINE ATTRIBUTES
 #define BUFFSIZE 512
@@ -58,13 +60,15 @@ int main(int argc, char* argv[])
 
 	// Try and write into the file while this program is running
 	while((n = read(STDIN_FILENO, buffer, BUFFSIZE)) > 0) 
-	{	// Try and begin writing. Apply error handling and checking
+	{	fgets(buffer, sizeof(buffer), stdin);
+		// Try and begin writing. Apply error handling and checking
 		if (write(fd, buffer, strlen(buffer)) == -1) 
 		{
 			printf("An error occurred writing into the file!"); 
 			return 3;
 		}
-		printf("Wrote >> %s ( %d ) bytes \n", buffer, strlen(buffer));
+		//printf("Wrote >> %s ( %d ) bytes \n", buffer, strlen(buffer));
+		printf("Wrote success");
 	}
 	// Close the fd
 	close(fd);
