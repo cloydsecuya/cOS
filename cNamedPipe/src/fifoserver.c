@@ -18,7 +18,7 @@ int main() {
    mknod(FIFO_FILE, S_IFIFO|0640, 0);
    strcpy(end, "end");
    while(1) {
-      fd = open(FIFO_FILE, O_RDONLY);
+      fd = open(FIFO_FILE, O_RDWR);
       read_bytes = read(fd, readbuf, sizeof(readbuf));
       readbuf[read_bytes] = '\0';
       printf("Received string: \"%s\" and length is %d\n", readbuf, (int)strlen(readbuf));
