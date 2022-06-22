@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 		byte_size = (int)strlen(buffer);	// cast to int
 		printf("\nRead >>> %s with %d in size \n", buffer, byte_size);
 
-		nextLine = strcmp(buffer, end);
+		nextLine = strcmp(buffer, line_end);
       	if (nextLine == 0) {
 			close(fd);
 			break;
