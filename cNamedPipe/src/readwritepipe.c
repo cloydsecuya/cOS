@@ -42,7 +42,20 @@ int main(int argc, char* argv[])
 		return 2;
 	}
 
-    
-
+    // Try and write into the file while this program is running
+	while((n = read(fd, buffer, BUFFSIZE)) > 0) 
+	{	fgets(buffer, sizeof(buffer), stdin);
+		// Try and begin writing. Apply error handling and checking
+		if (read(fd, buffer, strlen(buffer)) == -1) 
+		{
+			printf("An error occurred reading into the file!"); 
+			return 3;
+		}
+		//printf("Wrote >> %s ( %d ) bytes \n", buffer, strlen(buffer));
+		printf("Read success");
+        printf(buffer);
+	}
+    // Close the fd
+    close(fd);
     return 0;
 }
