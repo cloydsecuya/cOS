@@ -35,6 +35,9 @@ int main(int argc, char* argv[])
     // Byte size entered from stdin
     int byte_size; 
 
+	// Bytes as message
+	int bytes;
+
 	// Line end to determine until next input is finished
 	char line_end[10]; 
 	int nextLine;
@@ -64,8 +67,8 @@ int main(int argc, char* argv[])
 		 * 		  SO \0 IS NEEDED!!!!!!
 		 * 
 		 */
-		buffer =  read(fd, buffer, sizeof(buffer));
-		buffer[buffer] = '\0'; 				// this is needed for printing later on
+		bytes =  read(fd, buffer, sizeof(buffer));
+		buffer[bytes] = '\0'; 				// this is needed for printing later on
 		byte_size = (int)strlen(buffer);	// cast to int
 		printf("Read >>> %s with %d\n  in size", buffer, byte_size);
 
