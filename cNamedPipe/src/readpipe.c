@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 		bytes =  read(fd, buffer, sizeof(buffer));
 		buffer[bytes] = '\0'; 				// this is needed for printing later on
 		byte_size = (int)strlen(buffer);	// cast to int
-		printf("Read >>> %s with %d\n  in size", buffer, byte_size);
+		printf("\nRead >>> %s with %d in size \n", buffer, byte_size);
 
 		nextLine = strcmp(buffer, end);
       	if (nextLine == 0) {
