@@ -41,11 +41,15 @@ void* mutexLock(void* arg)
 	// Job Counter
 	int counter;
 	
+	printf("Press <ENTER> key to initialize!"); 
+	getchar(); 
+
 	// Create a mutex lock on thread
 	pthread_mutex_lock(&lock); 
 
 	// Since we want to allow an input of ENTER key...
-    scanf("Press <ENTER> key");
+    printf("Press <ENTER> key");
+	getchar(); 
 	printf("Lock has been acquired!");
 	
 	unsigned long i = 0;
@@ -53,12 +57,13 @@ void* mutexLock(void* arg)
     
 	printf("\n Job %d has started\n", counter);
 	printf("Trying to get lock...\n");
-    for (i = 0; i < (0xFFFFFFFF); i++);
+    // for (i = 0; i < (0xFFFFFFFF); i++);
 	printf("Got lock...currently holding...\n");
 
 	// Try to unlock the created lock
+	printf("Press <ENTER> key");
+	getchar(); 
 	pthread_mutex_unlock(&lock); 
-	scanf("Press <ENTER> key");
     printf("\n Job %d has finished\n", counter);
 	printf("Releasing lock....\n");
 	printf("Locked Released....\n");
