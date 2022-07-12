@@ -32,15 +32,22 @@
 #include <string.h>
 #include <unistd.h>
 
-pthread_t tid[2];
-pthread_mutex_t lock; 
-int counter;
+
+pthread_t tid[2];		// thread id
+pthread_mutex_t lock; 	// mutex
   
 void* mutexLock(void* arg)
 {	
+	// Job Counter
+	int counter;
+	
 	// Create a mutex lock on thread
 	pthread_mutex_lock(&lock); 
-    
+
+	// Since we want to allow an input of ENTER key...
+    scanf("Press <ENTER> key");
+	printf("Lock has been acquired!");
+	
 	unsigned long i = 0;
     counter += 1;
     
@@ -48,11 +55,12 @@ void* mutexLock(void* arg)
 	printf("Trying to get lock...\n");
     for (i = 0; i < (0xFFFFFFFF); i++);
 	printf("Got lock...currently holding...\n");
-    printf("\n Job %d has finished\n", counter);
-	printf("Releasing lock....\n");
 
 	// Try to unlock the created lock
 	pthread_mutex_unlock(&lock); 
+	scanf("Press <ENTER> key");
+    printf("\n Job %d has finished\n", counter);
+	printf("Releasing lock....\n");
 	printf("Locked Released....\n");
 
     return NULL;
@@ -60,18 +68,38 @@ void* mutexLock(void* arg)
   
 int main(void)
 {
+	int n;
+	int err; 
     int i = 0;
     int thread_handle;
-  
-    while (i < 5) {
-        thread_handle = pthread_create(&(tid[i]), NULL, &mutexLock, NULL);
-        if (thread_handle != 0)
-            printf("\nThread can't be created : [%s]", strerror(thread_handle));
-        i++;
-    }
+	
+	// Start to create a POSIX thread.
+	/**
+	 * @note 
+	 * 		Construct a new pthread create object
+	 * 		Furthermore, to make things much easier. 
+	 * 		We will be using the using a reference operator to our function to point back to it.  
+	 */
+	thread_handle = pthread_create(&(tid[i]), NULL, &mutexLock, NULL); 	
+
+	// Error checking 
+	if (thread_handle != 0)
+	{
+		printf("\nAn error occurred while trying to initialize a pthread!"); 
+		err = 1; 
+		return err; 
+	}	
+
+
+    // while ((n = read(STDIN_FILENO, buffer, BUFFSIZE)) > 0) {
+    //     thread_handle = pthread_create(&(tid[i]), NULL, &mutexLock, NULL);
+    //     if (thread_handle != 0)
+    //         printf("\nThread can't be created : [%s]", strerror(thread_handle));
+    //     i++;
+    // }
   
     pthread_join(tid[0], NULL);		// open thread
     pthread_join(tid[1], NULL);		// close thread
-  
+
     return 0;
 }
