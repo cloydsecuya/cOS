@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     if (argc > 1) 
     {
         fl.l_type = F_RDLCK;
-        printf("\nReading some arguments in execution!\n")
+        printf("\nReading some arguments in execution!\n");
     }
     
     // Start opening some file with read and write mode
