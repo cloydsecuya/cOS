@@ -33,6 +33,7 @@
 #include <unistd.h>
 
 pthread_t tid[2];
+pthread_mutex_t lock; 
 int counter;
   
 void* mutexLock(void* arg)
