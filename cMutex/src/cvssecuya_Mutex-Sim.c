@@ -72,11 +72,11 @@ int main(int argc, char *argv[])
      *  if this returns a negative int. Something went wrongs
     */
     printf("\nOpening file...\n");
-    fd = open("cvssecuya_Mutex-Sim.c", O_RDWR);
+    fd = open("../src/cvssecuya_Mutex-Sim.c", O_RDWR);
     if (fd == -1) 
     {
         perror("File may not exist or may be renamed!");        // this is alternative to stderr in debugging error
-        printf("An error occurred in opening the file");
+        printf("An error occurred in opening the file\n");
         return 1; 
     }
 
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
     if (setlkw == -1)
     {
         perror("Problem with sytem call to ammend read-write lock!");
-        printf("An error occurred in getting the lock");
+        printf("An error occurred in getting the lock\n");
         return 2; 
     }
 
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
     if (setlk == -1) 
     {
         perror("Problem with sytem call to ammend read-write lock!");
-        printf("An error occurred in releasing the lock");
+        printf("An error occurred in releasing the lock\n");
         return 2; 
     }
 
