@@ -72,9 +72,9 @@ int main(int argc, char *argv[])
      *  if this returns a negative int. Something went wrongs
     */
     printf("\nOpening file...\n");
+    fd = open("cvssecuya_Mutex-Sim.c", O_RDWR);
     // fd = fopen("../src/cvssecuya_Mutex-Sim.c", "r+");
-    // fd = open("../src/cvssecuya_Mutex-Sim.c", O_RDWR);
-    if ((fopen("../src/cvssecuya_Mutex-Sim.c", "r+")) == -1) 
+    if (fd == -1) 
     {
         perror("File may not exist or may be renamed!");        // this is alternative to stderr in debugging error
         printf("An error occurred in opening the file\n");
