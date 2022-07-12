@@ -49,7 +49,7 @@ struct flock fl = {
     0,                  // l_start
     0,                  // l_len
     0                   // l_pid
-}
+};
 
 int main(int argc, char *argv[]) 
 {
