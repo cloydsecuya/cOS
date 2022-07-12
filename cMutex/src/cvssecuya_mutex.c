@@ -35,33 +35,42 @@
 pthread_t tid[2];
 int counter;
   
-void* trythis(void* arg)
-{
-    unsigned long i = 0;
+void* mutexLock(void* arg)
+{	
+	// Create a mutex lock on thread
+	pthread_mutex_lock(&lock); 
+    
+	unsigned long i = 0;
     counter += 1;
-    printf("\n Job %d has started\n", counter);
-  
-    for (i = 0; i < (0xFFFFFFFF); i++)
-        ;
+    
+	printf("\n Job %d has started\n", counter);
+	printf("Trying to get lock...\n");
+    for (i = 0; i < (0xFFFFFFFF); i++);
+	printf("Got lock...currently holding...\n");
     printf("\n Job %d has finished\n", counter);
-  
+	printf("Releasing lock....\n");
+
+	// Try to unlock the created lock
+	pthread_mutex_unlock(&lock); 
+	printf("Locked Released....\n");
+
     return NULL;
 }
   
 int main(void)
 {
     int i = 0;
-    int error;
+    int thread_handle;
   
-    while (i < 2) {
-        error = pthread_create(&(tid[i]), NULL, &trythis, NULL);
-        if (error != 0)
-            printf("\nThread can't be created : [%s]", strerror(error));
+    while (i < 5) {
+        thread_handle = pthread_create(&(tid[i]), NULL, &mutexLock, NULL);
+        if (thread_handle != 0)
+            printf("\nThread can't be created : [%s]", strerror(thread_handle));
         i++;
     }
   
-    pthread_join(tid[0], NULL);
-    pthread_join(tid[1], NULL);
+    pthread_join(tid[0], NULL);		// open thread
+    pthread_join(tid[1], NULL);		// close thread
   
     return 0;
 }
