@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     if (argc > 1) 
         fl.l_type = F_RDLCK;
 
-    if ((fd = open("lockdemo.c", O_RDWR)) == -1) {
+    if ((fd = open("creatingMutexLock.c", O_RDWR)) == -1) {
         perror("open");
         exit(1);
     }
